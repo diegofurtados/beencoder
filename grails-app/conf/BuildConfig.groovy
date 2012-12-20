@@ -30,11 +30,15 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+		mavenRepo "http://trac.bitzeche.de/archiva/repository/release/"
+		mavenRepo "http://www.jets3t.org/maven2"
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
+		runtime 'de.bitzeche.video.transcoding:zencoder-api:0.9.2'
+		runtime 'net.java.dev.jets3t:jets3t:0.9.0'
     }
 
     plugins {
