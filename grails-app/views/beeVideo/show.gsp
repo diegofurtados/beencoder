@@ -23,11 +23,11 @@
 			</g:if>
 			<ul id="errors" class="errors" role="alert" style="visibility: hidden;"></ul>
 			
-			<g:hiddenField name="jobId" value="${beeVideoInstance?.jobId}"/>
-			<g:hiddenField name="url" value="${beeVideoInstance?.outputPath}"/>
+			<g:hiddenField name="jobId" value="${beeVideoInstance?.beeVideo?.id}"/>
+			<g:hiddenField name="url" value="${beeVideoInstance?.beeVideo?.output[0].url}"/>
 			<div class="fieldcontain">
 				<span class="property-label">BeeVideo:</span> 
-				<span id="beeVideoName" class="property-value">${beeVideoInstance?.name}</span>
+				<span id="beeVideoName" class="property-value">${beeVideoInstance?.beeVideo?.output[0].label}</span>
 			</div>
 			
 			<div id="progress_controls" class="fieldcontain">
@@ -35,24 +35,24 @@
 				<span id="input_event" class="property-value"></span>
 				<br />
 				<span class="property-label">Input Progress:</span>
-				<span id="input_progress" class="property-value">0</span>
+				<span class="property-value"><span id="input_progress">0</span>%</span>
 				<br /><br />
 				
 				<span class="property-label">Output Event:</span>
 				<span id="output_event" class="property-value"></span>
 				<br />
 				<span class="property-label">Output Progress:</span>
-				<span id="output_progress" class="property-value">0</span>
+				<span class="property-value"><span id="output_progress">0</span>%</span>
 				<br />
 				
 				<br />
 				<span class="property-label">Total Progress:</span>
-				<span id="total_progress" class="property-value">0</span>
+				<span class="property-value"><span id="total_progress">0</span>%</span>
 			</div>
 		</div>
 		<div align="center" style="margin-top: 100px;">
 			<span id="showVideo">
-				<video id="beeVideo" width="800px" controls autoplay></video>
+				<video id="beeVideo" width="700px" height="500px" controls autoplay></video>
 			</span>			
 		</div>
 		<g:javascript src="progress.js" />

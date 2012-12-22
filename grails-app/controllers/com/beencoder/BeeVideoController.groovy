@@ -22,28 +22,28 @@ class BeeVideoController {
 		MultipartFile video = request instanceof MultipartHttpServletRequest ? request.getFile("beeMovie") : null
 		if (video){
 			def s3Object = s3Delegate.push(video.inputStream, video.originalFilename)
-			BeeVideo beeVideo = zencodeDelegate.encode(s3Object.getName())
+			String jobId = zencodeDelegate.encode(s3Object.getName())
 
-			chain(action: "show", id: beeVideo.jobId, model : [beeVideo :  beeVideo])
+			redirect(action: "show", id: jobId)
 		} else {
 			render(view : "encode")
 		}
 	}
 
 	def show(Integer id){
-		def beeVideo = null
+		def beeVideoJob = null
+		beeVideoJob = zencodeDelegate.getBeeVideo(id)
 
-		if (chainModel) {
-			beeVideo = chainModel.beeVideo
-		} else {
-			beeVideo = zencodeDelegate.getBeeVideo(id)
-		}
-
-		[beeVideoInstance : beeVideo]
+		[beeVideoInstance : beeVideoJob]
 	}
 
 	def progress(Integer id){
 		response.contentType = "application/json"
 		render JSON.parse(zencodeDelegate.getJobProgress(id.toString())) as JSON
+	}
+
+	def list() {
+		def beeJobVideos = zencodeDelegate.list()
+		[beeVideoInstanceList: beeJobVideos, beeVideoInstanceTotal: beeJobVideos.size()]
 	}
 }

@@ -15,7 +15,7 @@ $(document)
 				function() {
 					var ajaxRequest = null;
 					var requestsWithErrors = 0;
-					var timeIntervalCall = 2000;
+					var timeIntervalCall = 1000;
 					var maxErrorRequestsPermitted = 3;
 					var ajaxCall = function() {
 						var jobId = $("#jobId").val();
