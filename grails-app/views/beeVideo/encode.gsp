@@ -6,6 +6,8 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'beeVideo.label', default: 'BeeVideo')}" />
 		<title>Codificar Vídeo</title>
+		<g:javascript library="jquery" plugin="jquery"/>
+		<r:require module="jquery" />
 	</head>
 	
 	<body>
@@ -36,13 +38,53 @@
 				</ul>
 			</g:hasErrors>
 			
-			<g:uploadForm action="encode">
-				<input type="file" id="beeMovie" name="beeMovie" /> 
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
-			</g:uploadForm>
-			
+			<div class="fieldcontain">
+				<span class="property-label">Tipo de upload:</span> 
+				<span class="property-value">
+					<input type="radio" id="uploadFileType" name="uploadType" value="0" checked="checked"/> Upload file
+					<input type="radio" id="uploadUrlType" name="uploadType" value="1" /> URL file
+				</span>
+			</div>
+			<div id="uploadVideoForm">
+				<g:uploadForm id="uploadVideoForm" action="encode">
+					<div class="fieldcontain">
+						<span class="property-label">Selecione o vídeo:</span> 
+						<span id="beeVideoName" class="property-value">
+							<input type="file" id="beeMovie" name="beeMovie" />
+						</span>
+					</div>
+					<fieldset class="buttons">
+						<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					</fieldset>
+				</g:uploadForm>
+			</div>
+			<div id="urlVideoForm">
+				<g:form action="encode">
+					<div class="fieldcontain">
+						<span class="property-label">Vídeo Url:</span> 
+						<span id="beeVideoName" class="property-value">
+							<input type="text" id="beeMovieUrl" name="beeMovieUrl" size="70">
+						</span>
+					</div>
+					<fieldset class="buttons">
+						<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					</fieldset>	
+				</g:form>
+			</div>
 		</div>
+		<script type="text/javascript">
+			$(document).ready(function (){
+				$("#urlVideoForm").hide();
+				$("input[name=uploadType]").click(function (){
+					if ($('input[name=uploadType]:checked').val() == 0){
+						$("#urlVideoForm").hide();
+						$("#uploadVideoForm").show();
+					} else {
+						$("#urlVideoForm").show();
+						$("#uploadVideoForm").hide();
+					}
+				});
+			});
+		</script>
 	</body>
 </html>

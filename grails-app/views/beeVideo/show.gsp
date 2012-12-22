@@ -21,10 +21,11 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ul id="errors" class="errors" role="alert" style="visibility: hidden;"></ul>
-			
 			<g:hiddenField name="jobId" value="${beeVideoInstance?.beeVideo?.id}"/>
 			<g:hiddenField name="url" value="${beeVideoInstance?.beeVideo?.output[0].url}"/>
+			<div>
+				<ul id="errorList" class="errors" role="alert" style="visibility: hidden;"></ul>
+			</div>
 			<div class="fieldcontain">
 				<span class="property-label">BeeVideo:</span> 
 				<span id="beeVideoName" class="property-value">${beeVideoInstance?.beeVideo?.output[0].label}</span>

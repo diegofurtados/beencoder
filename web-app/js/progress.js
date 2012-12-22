@@ -47,10 +47,10 @@ $(document)
 										attachVideoToPage(json.outputs[0].id);
 									} else if (json.state == "failed") {
 										clearInterval(intervalCall);
-										$("#errors")
-												.add("li")
-												.text(
-														"Ocorreu um erro ao codificar o seu vídeo.");
+										$("#errorList").empty();
+										$("#errorList").append("<li>PAM! Ocorreu um erro ao codificar o seu vídeo.</li>");
+										$("#errorList").append("<li>Na minha máquina estava funcionando...</li>");
+										$("#errorList").removeAttr("style");
 									}
 								});
 

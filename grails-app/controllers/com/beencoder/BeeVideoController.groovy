@@ -20,12 +20,25 @@ class BeeVideoController {
 
 	def encode() {
 		MultipartFile video = request instanceof MultipartHttpServletRequest ? request.getFile("beeMovie") : null
-		if (video){
-			def s3Object = s3Delegate.push(video.inputStream, video.originalFilename)
-			String jobId = zencodeDelegate.encode(s3Object.getName())
-
-			redirect(action: "show", id: jobId)
-		} else {
+		if (video && video.size > 0){
+			if (!isValidVideoFormat(video.originalFilename)){
+				flash.message = "Formato de vídeo inválido. Tem certeza que ${video.originalFilename} é mesmo um vídeo?"
+				render(view : "encode")
+			} else {
+				def s3Object = s3Delegate.push(video.inputStream, video.originalFilename)
+				String jobId = zencodeDelegate.encode(s3Object.getName())
+				redirect(action: "show", id: jobId)
+			}
+		} else if (params.beeMovieUrl?.startsWith("http")){
+			if (!isValidVideoFormat(params.beeMovieUrl)){
+				flash.message = "Formato de vídeo inválido. Tem certeza que ${params.beeMovieUrl} é mesmo um vídeo?"
+				render(view : "encode")
+			} else {
+				String jobId = zencodeDelegate.encode(params.beeMovieUrl)
+				redirect(action: "show", id: jobId)
+			}
+		}else {
+			flash.message = "Não pode ser vazio."
 			render(view : "encode")
 		}
 	}
@@ -45,5 +58,9 @@ class BeeVideoController {
 	def list() {
 		def beeJobVideos = zencodeDelegate.list()
 		[beeVideoInstanceList: beeJobVideos, beeVideoInstanceTotal: beeJobVideos.size()]
+	}
+
+	def boolean isValidVideoFormat(String videoName){
+		return videoName =~ ZencoderDelegate.ACCEPTED_VIDEO_FORMATS_REGEX
 	}
 }

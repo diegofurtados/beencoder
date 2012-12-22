@@ -32,16 +32,24 @@ public class ZencoderDelegate {
 	private static final String API_KEY = "10325759e6ada877daf176bc82b16244";
 	private static final String S3_URL = "s3://";
 	private static final String DEFAULT_ENCODE_FORMAT = "ogg";
+	public static final String ACCEPTED_VIDEO_FORMATS_REGEX = ".dv|.3g2|.3gp|.3gp2|.3gpp|.3gpp2|.aac|.ac3|.eac3|.ec3|.f4a|.f4b|.f4v|.flv|.highwinds|.m4a|.m4b|.m4r|.m4v|.mkv|.mov|.mp3|.mp4|.oga|.ogg|.ogv|.ogx|.ts|.webm|.wma|.wmv";
 
 	public String encode(String s3BeeVideoName) {
 		StringBuilder s3InputUrl = new StringBuilder();
-		s3InputUrl.append(S3_URL);
-		s3InputUrl.append(AmazonS3Delegate.BUCKET_DEFAULT_NAME);
-		s3InputUrl.append("/");
-		s3InputUrl.append(s3BeeVideoName);
 
-		String beeVideoNameWithoutExtension = s3BeeVideoName.substring(0, s3BeeVideoName.lastIndexOf("."));
 		StringBuilder s3OutputUrl = new StringBuilder();
+		String beeVideoNameWithoutExtension = "";
+		if (s3BeeVideoName.startsWith("http")) {
+			beeVideoNameWithoutExtension = s3BeeVideoName.substring(s3BeeVideoName.lastIndexOf("/") + 1, s3BeeVideoName.lastIndexOf("."));
+			s3InputUrl.append(s3BeeVideoName);
+		} else {
+			s3InputUrl.append(S3_URL);
+			s3InputUrl.append(AmazonS3Delegate.BUCKET_DEFAULT_NAME);
+			s3InputUrl.append("/");
+			s3InputUrl.append(s3BeeVideoName);
+			beeVideoNameWithoutExtension = s3BeeVideoName.substring(0, s3BeeVideoName.lastIndexOf("."));
+		}
+
 		s3OutputUrl.append(S3_URL);
 		s3OutputUrl.append(AmazonS3Delegate.BUCKET_ENCODED_NAME);
 		s3OutputUrl.append("/");
