@@ -1,6 +1,14 @@
 package com.beencoder
 
-class BeeVideo {
-	private String name;
-	private String path;
+
+public class BeeVideo implements Serializable {
+	String name
+	String outputPath
+	String jobId
+	Date date
+
+	@Override
+	public String toString() {
+		return outputPath;
+	}
 }
