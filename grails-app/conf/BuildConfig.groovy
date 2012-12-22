@@ -41,6 +41,7 @@ grails.project.dependency.resolution = {
 		runtime 'com.sun.jersey:jersey-client:1.16'
 		runtime 'com.sun.jersey:jersey-core:1.16'
 		runtime 'com.sun.jersey.contribs:jersey-apache-client:1.16'
+		runtime 'com.google.code.gson:gson:2.2.2'
 	}
 
 	plugins {
