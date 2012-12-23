@@ -72,6 +72,9 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+			if ($.browser.msie) {
+				$(location).attr('href', "http://abetterbrowser.org");
+			}
 			$(document).ready(function (){
 				$("#create").removeAttr("disabled");
 				$("#urlVideoForm").hide();

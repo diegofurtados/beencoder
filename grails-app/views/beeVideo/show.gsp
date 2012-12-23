@@ -36,19 +36,19 @@
 				<span id="input_event" class="property-value"></span>
 				<br />
 				<span class="property-label">Input Progress:</span>
-				<span class="property-value"><span id="input_progress">0</span>%</span>
+				<span class="property-value"><span id="input_progress">0</span>%<span><img style="margin-left: 10px;" id="input_spinner" src="${resource(dir:'images',file:'spinner.gif')}"/></span></span>
 				<br /><br />
 				
 				<span class="property-label">Output Event:</span>
 				<span id="output_event" class="property-value"></span>
 				<br />
 				<span class="property-label">Output Progress:</span>
-				<span class="property-value"><span id="output_progress">0</span>%</span>
+				<span class="property-value"><span id="output_progress">0</span>%<img style="margin-left: 10px;" id="output_spinner" src="${resource(dir:'images',file:'spinner.gif')}"/></span>
 				<br />
 				
 				<br />
 				<span class="property-label">Total Progress:</span>
-				<span class="property-value"><span id="total_progress">0</span>%</span>
+				<span class="property-value"><span id="total_progress">0</span>%<img style="margin-left: 10px;" id="total_spinner" src="${resource(dir:'images',file:'spinner.gif')}"/></span>
 			</div>
 		</div>
 		<div align="center" style="margin-top: 100px;">
