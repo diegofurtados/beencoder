@@ -18,7 +18,10 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://www.sambatech.com"><img src="${resource(dir: 'images', file: 'logo_samba.png')}" alt="Grails"/></a></div>
+		<div id="grailsLogo" role="banner">
+			<a href="http://www.sambatech.com"><img src="${resource(dir: 'images', file: 'logo_samba.png')}" alt="Grails"/></a>
+			<div style="margin-left: 12%; margin-top: -70px; color: white; font-size: 42px; font-weight: bold; letter-spacing: -2px; position: absolute;">Beencoder</div>
+		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
