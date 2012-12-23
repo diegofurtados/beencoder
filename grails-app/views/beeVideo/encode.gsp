@@ -4,7 +4,6 @@
 	
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'beeVideo.label', default: 'BeeVideo')}" />
 		<title>Codificar Vídeo</title>
 		<g:javascript library="jquery" plugin="jquery"/>
 		<r:require module="jquery" />
@@ -54,7 +53,7 @@
 						</span>
 					</div>
 					<fieldset class="buttons">
-						<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+						<g:submitButton name="create" class="save" value="Codificar vídeo..." />
 					</fieldset>
 				</g:uploadForm>
 			</div>
@@ -67,13 +66,14 @@
 						</span>
 					</div>
 					<fieldset class="buttons">
-						<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+						<g:submitButton name="create" id="create" class="save" value="Codificar vídeo..." />
 					</fieldset>	
 				</g:form>
 			</div>
 		</div>
 		<script type="text/javascript">
 			$(document).ready(function (){
+				$("#create").removeAttr("disabled");
 				$("#urlVideoForm").hide();
 				$("input[name=uploadType]").click(function (){
 					if ($('input[name=uploadType]:checked').val() == 0){

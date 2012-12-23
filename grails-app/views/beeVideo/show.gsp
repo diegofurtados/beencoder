@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<title>beeVideo</title>
 		<g:javascript library="jquery" plugin="jquery"/>
 		<r:require module="jquery" />
 	</head>
@@ -12,8 +12,8 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="encode"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="list" action="list">Meus BeeVídeos</g:link></li>
+				<li><g:link class="create" action="encode">Codificar novo Vídeo</g:link></li>
 			</ul>
 		</div>
 		<div id="show-beeVideo" class="content scaffold-show" role="main">

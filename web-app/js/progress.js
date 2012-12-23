@@ -20,7 +20,7 @@ $(document)
 					var ajaxCall = function() {
 						var jobId = $("#jobId").val();
 						ajaxRequest = $.ajax({
-							url : "/beencoder/beeVideo/progress/" + jobId,
+							url : "../progress/" + jobId,
 							type : "GET",
 							dataType : "json"
 						});
@@ -88,6 +88,4 @@ function finishProgressControls(intervalId, json) {
 
 function attachVideoToPage() {
 	$("#beeVideo").add("source").attr('src', $("#url").val());
-	// $("#beeVideo").add("source").attr('src',
-	// "http://upload.wikimedia.org/wikipedia/commons/a/a8/Ivy_Mike_test.ogg");
 }
